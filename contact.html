@@ -172,12 +172,23 @@
     <script src="https://cdn.emailjs.com/dist/email.min.js"></script>
     <script>
         (function(){
-            emailjs.init("service_m4ot7mi"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
+            emailjs.init("t0bT09FDvlJbpgKad"); // Replace "YOUR_USER_ID" with your actual EmailJS user ID
     
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
     
-                emailjs.sendForm('service_m4ot7mi','template_ok6mwup', this)
+                // Optionally check for empty fields here before sending the form
+                var name = document.getElementById('name').value.trim();
+                var email = document.getElementById('email').value.trim();
+                var subject = document.getElementById('subject').value.trim();
+                var message = document.getElementById('message').value.trim();
+    
+                if (name === '' || email === '' || subject === '' || message === '') {
+                    alert('Please fill in all fields');
+                    return;
+                }
+    
+                emailjs.sendForm('service_m4ot7mi', 'template_ok6mwup', this)
                     .then(function(response) {
                         console.log('SUCCESS!', response.status, response.text);
                         alert('Message sent successfully!');
@@ -188,6 +199,7 @@
             });
         })();
     </script>
+    
     
 
     
